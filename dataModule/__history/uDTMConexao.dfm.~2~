@@ -1,0 +1,24 @@
+object dtmConexao: TdtmConexao
+  Height = 703
+  Width = 920
+  object ConexaoDB: TZConnection
+    ControlsCodePage = cCP_UTF16
+    Catalog = ''
+    Properties.Strings = (
+      'RawStringEncoding=DB_CP')
+    DisableSavepoints = False
+    HostName = '.\SQLEXPRESS'
+    Port = 0
+    Database = ''
+    User = ''
+    Password = ''
+    Protocol = 'mssql'
+    LibraryLocation = 'C:\Dev\Delphi\Curso_Delphi\ntwdblib.dll'
+    Left = 112
+    Top = 136
+  end
+  object ConexaoDB2: TADOConnection
+    Left = 352
+    Top = 192
+  end
+end

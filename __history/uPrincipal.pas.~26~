@@ -1,0 +1,75 @@
+unit uPrincipal;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, uDTMConexao;
+
+type
+  TfrmPrincipal = class(TForm)
+    MenuPrincipal: TMainMenu;
+    CADASTRO1: TMenuItem;
+    CADASTRO2: TMenuItem;
+    RELATORIO1: TMenuItem;
+    CLIENTE1: TMenuItem;
+    CLIENTE2: TMenuItem;
+    CATEGORIA1: TMenuItem;
+    CATEGORIA2: TMenuItem;
+    N1: TMenuItem;
+    mnuFechar: TMenuItem;
+    VENDAS1: TMenuItem;
+    CLIENTE3: TMenuItem;
+    CLIENTE4: TMenuItem;
+    PRODUTO1: TMenuItem;
+    PRODUTO2: TMenuItem;
+    VENDAPORDATA1: TMenuItem;
+    procedure mnuFecharClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure CATEGORIA1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmPrincipal: TfrmPrincipal;
+
+implementation
+
+{$R *.dfm}
+
+uses uCadCategoria;
+
+procedure TfrmPrincipal.CATEGORIA1Click(Sender: TObject);
+begin
+  frmCadCategoria:= TfrmCadCategoria.Create(Self);
+  frmCadCategoria.ShowModal;
+  frmCadCategoria.Release;
+end;
+
+procedure TfrmPrincipal.FormCreate(Sender: TObject);
+begin
+  {dtmConexao := TdtmConexao.Create(Self);     //Cria o formulario
+  dtmConexao.ConexaoDB.SQLHourGlass:= True;   //Troca o icone do mouse para ampulheta quando conecta no banco
+  dtmConexao.ConexaoDB.Protocol:= 'ado';      // Configuracao das propriedades do banco (uDTMCONEXAO)
+  dtmConexao.ConexaoDB.Database:= 'Provider=SQLOLEDB.1;Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=vendas;Data Source=DESKTOP-DGHK2IU\SQLEXPRESS';
+  dtmConexao.ConexaoDB.Connected:= True;     //Conecta com o Banco de dados }
+
+  dtmConexao := TdtmConexao.Create(Self);
+  with dtmConexao.ConexaoDB do
+    begin
+      SQLHourGlass:= True;
+      Protocol:= 'ado';
+      Database:= 'Provider=SQLOLEDB.1;Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=vendas;Data Source=DESKTOP-DGHK2IU\SQLEXPRESS';
+      Connected:= True;
+    end;
+end;
+
+procedure TfrmPrincipal.mnuFecharClick(Sender: TObject);
+begin
+  Close;
+end;
+
+end.

@@ -1,0 +1,8 @@
+object dtmConexao: TdtmConexao
+  Height = 703
+  Width = 920
+  object ConexaoDB2: TADOConnection
+    Left = 352
+    Top = 192
+  end
+end
