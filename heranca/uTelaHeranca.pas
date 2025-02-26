@@ -38,6 +38,7 @@ type
     { Private declarations }
     procedure ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar:TBitBtn; Navegador:TDBNavigator;
                               pgcPrincipal: TPageControl; Flag:Boolean);
+    procedure ControlarIndiceTab(pgcPrincipal: TPageControl; Indice: Integer);
   public
     { Public declarations }
   end;
@@ -48,11 +49,6 @@ var
 implementation
 
 {$R *.dfm}
-procedure TfrmTelaHeranca.btnNovoClick(Sender: TObject);
-begin
-  ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavigator, pgcPrincipal, false);
-end;
-
 procedure TfrmTelaHeranca.ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar:TBitBtn; Navegador:TDBNavigator;
                                           pgcPrincipal: TPageControl; Flag:Boolean);
 begin
@@ -65,19 +61,32 @@ begin
   btnGravar.Enabled:= not(Flag);
 end;
 
+procedure TfrmTelaHeranca.ControlarIndiceTab(pgcPrincipal: TPageControl; Indice : Integer);
+begin
+  if(pgcPrincipal.Pages[Indice].TabVisible) then
+    pgcPrincipal.TabIndex:= Indice;
+end;
+
+procedure TfrmTelaHeranca.btnNovoClick(Sender: TObject);
+begin
+  ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavigator, pgcPrincipal, false);
+end;
+
 procedure TfrmTelaHeranca.btnAlterarClick(Sender: TObject);
 begin
-ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavigator, pgcPrincipal, false);
+  ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavigator, pgcPrincipal, false);
 end;
 
 procedure TfrmTelaHeranca.btnApagarClick(Sender: TObject);
 begin
-ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavigator, pgcPrincipal, true);
+  ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavigator, pgcPrincipal, true);
+  ControlarIndiceTab(pgcPrincipal, 0);
 end;
 
 procedure TfrmTelaHeranca.btnCancelarClick(Sender: TObject);
 begin
   ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavigator, pgcPrincipal, true);
+  ControlarIndiceTab(pgcPrincipal, 0);
 end;
 
 procedure TfrmTelaHeranca.btnFecharClick(Sender: TObject);
@@ -88,6 +97,7 @@ end;
 procedure TfrmTelaHeranca.btnGravarClick(Sender: TObject);
 begin
   ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavigator, pgcPrincipal, true);
+  ControlarIndiceTab(pgcPrincipal, 0);
 end;
 
 procedure TfrmTelaHeranca.FormCreate(Sender: TObject);
